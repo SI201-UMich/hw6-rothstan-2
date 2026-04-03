@@ -1,14 +1,14 @@
 # SI 201 HW6 (APIs, JSON, and Caching)
-# Your name:
-# Your student id:
-# Your email:
+# Your name: Andrew Rothstein
+# Your student id: 9819 4421
+# Your email: rothstan@umich.edu
 # Who or what you worked with on this homework (including generative AI like ChatGPT):
+# ChatGPT
 # If you worked with generative AI also add a statement for how you used it.
-# e.g.:
-# Asked ChatGPT for help debugging and understanding the JSON structure
+#I used ChatGpt in order to help me understand the errors I was getting in my code.
 #
 # Did your use of GenAI on this assignment align with your goals and guidelines in your Gen AI contract? If not, why?
-#
+#Yes 
 # --- ARGUMENTS & EXPECTED RETURN VALUES PROVIDED --- #
 # --- SEE INSTRUCTIONS FOR FULL DETAILS ON METHOD IMPLEMENTATION --- #
 
@@ -36,14 +36,11 @@ def load_json(filename):
         A dictionary with the JSON data, OR an empty dictionary {} if the file
         cannot be opened or is not valid JSON.
     """
-    path= os.join(os.path.dirname(__file__), filename)
     try:
-        with open(path, 'r', encoding= 'utf-8') as f:
-            data= json.load(f)
-            return data
+        with open(filename, 'r', encoding='utf-8') as f:
+            return json.load(f)
     except:
         return {}
-
 
 def create_cache(dictionary, filename):
     """
@@ -144,10 +141,10 @@ def get_longest_lifespan_breed(cache_file):
                 longest_breed_name= breed_name
         except:
             continue
-        if longest_breed_name is not None:
-            return (longest_breed_name, longest_lifespan)
-        else:
-            return "No breeds found"
+    if longest_breed_name is not None:
+        return (longest_breed_name, longest_lifespan)
+    else:
+        return "No breeds found"
         
 
 
@@ -202,7 +199,6 @@ def recommend_breeds_in_same_group(breed_name, cache_file):
             "No recommendations found based on '{breed_name}'."  (no other breeds in that group)
     """
 
-
 class TestHomeworkDogAPI(unittest.TestCase):
     def setUp(self):
         self.test_cache_file = "test_cache_dogs.json"
@@ -223,9 +219,9 @@ class TestHomeworkDogAPI(unittest.TestCase):
         # NOTE: By default we leave test files on disk so you can inspect the cache.
         # If you want the tests to clean up after themselves, UNCOMMENT the lines below.
         #
-        # if os.path.exists(self.test_cache_file):
-        #     os.remove(self.test_cache_file)
-        pass
+        if os.path.exists(self.test_cache_file):
+            os.remove(self.test_cache_file)
+        
 
     # -------------------------
     # load_json / create_cache
